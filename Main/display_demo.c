@@ -299,12 +299,15 @@ void PrintSprite(u8 *frame, u32 width, u32 height, u32 stride, u8 *sprite, u32 x
 
 			for(int x = 0; x < spriteWidth; x+=4) {
 
-				frame[(xcoi*4) + (ycoi*stride) + 	 x + lineStart] = sprite[x1 + 2];
-				frame[(xcoi*4) + (ycoi*stride) + 1 + x + lineStart] = sprite[x1 + 1];
-				frame[(xcoi*4) + (ycoi*stride) + 2 + x + lineStart] = sprite[x1];
-				frame[(xcoi*4) + (ycoi*stride) + 3 + x + lineStart] = sprite[x1 + 3];
+                if(!((sprite[x1] == 255) && (sprite[x1 + 1] == 255) && (sprite[x1 + 2] == 255))) {
+                    frame[(xcoi*4) + (ycoi*stride) + 	 x + lineStart] = sprite[x1 + 2];
+                    frame[(xcoi*4) + (ycoi*stride) + 1 + x + lineStart] = sprite[x1 + 1];
+                    frame[(xcoi*4) + (ycoi*stride) + 2 + x + lineStart] = sprite[x1];
+                    frame[(xcoi*4) + (ycoi*stride) + 3 + x + lineStart] = sprite[x1 + 3];
 
-				x1 += 4;
+                    x1 += 4;
+                }
+
 
 			}
 			lineStart += stride;
